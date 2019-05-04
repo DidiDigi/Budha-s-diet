@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+
+    <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/marginDefault"
+            android:layout_marginEnd="@dimen/marginDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    <TextView
+            android:id="@+id/stepName"
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/defaultMargin"
+            android:textSize="@dimen/textHeaderL"
+            app:layout_constraintBaseline_toBaselineOf="@+id/stepDaysCount"
+            tools:text="Krok 0"
+            />
+
+    <TextView
+            android:id="@+id/stepDaysCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/marginDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/marginSmall"
+            android:textSize="@dimen/textHeaderL"
+            app:layout_constraintTop_toBottomOf="@+id/profilePicture"
+            tools:text="13 dnů"
+            />
+
+    <View
+            android:id="@+id/divider"
+            android:layout_width="395dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/marginSmall"
+            app:layout_constraintTop_toBottomOf="@+id/stepDaysCount"
+            android:layout_marginStart="@dimen/marginSmall"
+            android:layout_marginEnd="@dimen/marginSmall"/>
+
+    <TextView
+            android:id="@+id/dayDate"
+            tools:text="2. 5. 2019"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            android:layout_marginTop="@dimen/marginDefault"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="393dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/marginDefault"
+            app:layout_constraintTop_toBottomOf="@+id/dayDate"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/marginDefault"
+            android:layout_marginStart="@dimen/marginDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/marginDefault"
+            android:layout_marginRight="@dimen/marginDefault"
+            android:id="@+id/mealsList"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/dayEatingHours"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@android:drawable/ic_input_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/marginDefault"
+            android:layout_marginEnd="@dimen/marginDefault"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/floatingActionButton"
+            android:layout_marginBottom="@dimen/marginExtraLarge"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            android:text="TextView"
+            tools:text="13 hodin"
+            android:textSize="32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/dayEatingHours"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
