@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "658300244146",
+    "firebase_url": "https://budha-s-diet.firebaseio.com",
+    "project_id": "budha-s-diet",
+    "storage_bucket": "budha-s-diet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658300244146:android:1f78243fb9809e60",
+        "android_client_info": {
+          "package_name": "cz.milatova.budhasdiet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658300244146-cdrfirkh35h9ml5jmn0l1h969q4nokab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.milatova.budhasdiet",
+            "certificate_hash": "16392e64335423fea7863d9dd8d24d06eac7786a"
+          }
+        },
+        {
+          "client_id": "658300244146-eielemh9nr1a1p67vh1ulsabtabn2ho4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUpyUr7mkH9Z_JKMVoqtpph_YyObkx4kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658300244146-eielemh9nr1a1p67vh1ulsabtabn2ho4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
