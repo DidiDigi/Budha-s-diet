@@ -19,6 +19,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 import cz.milatova.budhasdiet.R
 import cz.milatova.budhasdiet.ui.login.LoginButtonState.*
@@ -30,6 +31,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var firebaseAuth: FirebaseAuth
     private var loginButtonState: LoginButtonState = LOGIN
+    private lateinit var user: FirebaseUser
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,43 +61,48 @@ class LoginActivity : AppCompatActivity() {
             if (loginButtonState == REGISTER) {
                 Log.d("LUDMILA", "before create");
                 createNewUser()
-            } else {
-                Log.d("LUDMILA", "login");
+            }
+            if (loginButtonState == LOGIN) {
+                Log.d("LUDMILA", "before login");
+                loginCurrentUser()
             }
         }
-
     }
 
     private fun createNewUser() {
-        Log.d("LUDMILA", "create");
         firebaseAuth.createUserWithEmailAndPassword(username.text.toString(), password.text.toString())
             .addOnCompleteListener { task ->
-                Log.d("LUDMILA", "complete");
                 if (task.isSuccessful) {
-                    Log.d("LUDMILA", "success");
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    var intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-
-
-
     }
 
+    private fun loginCurrentUser(){
+        firebaseAuth.signInWithEmailAndPassword(username.text.toString(), password.text.toString())
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful()) {
+                // Sign in success, update UI with the signed-in user's information
+                val currentUser = firebaseAuth.currentUser
+                var intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.w("LUDMILA", "signInWithEmail:failure", task.getException());
+                Toast.makeText(this@LoginActivity, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()
-
         val currentUser = firebaseAuth.currentUser
-
-
     }
-
-
 }
-
 
 enum class LoginButtonState {
     LOGIN, REGISTER
