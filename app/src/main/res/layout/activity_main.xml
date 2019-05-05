@@ -20,7 +20,7 @@
 
     <TextView
             android:id="@+id/stepName"
-            android:text="TextView"
+            android:text="Krok 0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:textSize="@dimen/textHeaderL"
             app:layout_constraintTop_toBottomOf="@+id/profilePicture"
             tools:text="13 dnů"
-            />
+            android:text="13 dnů"/>
 
     <View
             android:id="@+id/divider"
@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@+id/dayEatingHours"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/addButton"
             android:src="@android:drawable/ic_input_add"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -103,5 +103,6 @@
             app:layout_constraintEnd_toEndOf="parent"
 
             android:layout_marginBottom="@dimen/marginLarge"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="13 hodin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
