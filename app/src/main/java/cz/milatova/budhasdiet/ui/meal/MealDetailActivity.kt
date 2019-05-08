@@ -3,6 +3,8 @@ package cz.milatova.budhasdiet.ui.meal
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,31 +22,51 @@ class MealDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.meal_item_detail)
 
+        val date = Date()
+        editMealDate.setText(date.toString())
+
         editMealCancel.setOnClickListener() {
             val intent = Intent(this@MealDetailActivity, MainActivity::class.java)
             startActivity(intent)
         }
-        val date = Date()
-        editMealDate.setText(date.toString())
 
         editMealOk.setOnClickListener() {
             if (editMealType.text.isNullOrEmpty()) {
-                Toast.makeText(this@MealDetailActivity, "Please enter meal type.",
-                    Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this@MealDetailActivity, "Please enter meal type.",
+                    Toast.LENGTH_SHORT
+                ).show();
                 return@setOnClickListener
             }
             if (editMealDate.text.isNullOrEmpty()) {
-                Toast.makeText(this@MealDetailActivity, "Please enter meal date.",
-                    Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this@MealDetailActivity, "Please enter meal date.",
+                    Toast.LENGTH_SHORT
+                ).show();
                 return@setOnClickListener
             }
             if (editMealTime.text.isNullOrEmpty()) {
-                Toast.makeText(this@MealDetailActivity, "Please enter meal time.",
-                    Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this@MealDetailActivity, "Please enter meal time.",
+                    Toast.LENGTH_SHORT
+                ).show();
                 return@setOnClickListener
             }
+            addMealToList(it, editMealType.text.toString(), editMealDate.text.toString(), editMealTime.text.toString())
+        }
+    }
 
-            //insert data to DB
+    private fun addMealToList(v: View, mealType: String, mealTime: String, mealDate: String) {
+        val intent = Intent() //nemusím vědět, kam to posílám
+        intent.putExtra("mealType", mealType)
+        intent.putExtra("mealDate", mealDate)
+        intent.putExtra("mealTime", mealTime)
+        setResult(RESULT_OK, intent)
+        finish()
+    }
+}
+
+    /*            //insert data to DB
             val db = FirebaseFirestore.getInstance()
             val meal = HashMap<String, Any>()
             meal["type"] = editMealType
@@ -60,9 +82,4 @@ class MealDetailActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w("LUDMILA", "Error adding document", e)
                 }
-
-            val intent = Intent(this@MealDetailActivity, MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
-}
+*/

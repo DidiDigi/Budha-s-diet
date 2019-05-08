@@ -12,10 +12,7 @@ import cz.milatova.budhasdiet.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.meal_item.view.*
 
-class MealAdapter(
-    val meals: ArrayList<Meal>,
-    val context: Context
-    ): RecyclerView.Adapter<MealAdapter.ViewHolder>() {
+class MealAdapter_DB(val db: FirebaseFirestore, val context: Context): RecyclerView.Adapter<MealAdapter_DB.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -24,12 +21,26 @@ class MealAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mealItemName.text = meals[position].type
-        holder.mealItemTime.text = meals[position].time
+        val meals = db.collection("melas").document()
+        meals.get().addOnSuccessListener { documentSnapshot ->
+            val meal = documentSnapshot.toObject(Meal::class.java)
+            holder.mealItemName.text = meal?.type
+            holder.mealItemTime.text = meal?.time
         }
 
+        /*db.collection("cities")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }*/
+    }
     override fun getItemCount(): Int {
-        return meals.count()
+        return arrayOf(db.collection("melas").get()).count()
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
