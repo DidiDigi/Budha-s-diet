@@ -5,12 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
 import cz.milatova.budhasdiet.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.meal_item.view.*
 
 class MealAdapter(
     val meals: ArrayList<Meal>,
@@ -25,8 +21,8 @@ class MealAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mealItemName.text = meals[position].type
-        holder.mealItemTime.text = meals[position].time
-        }
+        holder.mealItemTime.text = meals[position].dateTime.toString("H:mm")
+    }
 
     override fun getItemCount(): Int {
         return meals.count()
